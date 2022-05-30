@@ -1,0 +1,535 @@
+basePath: /v1
+definitions:
+  auth.Respon422DForget:
+    properties:
+      No_email:
+        example: Sorry, we do not recognize this email
+        type: string
+      Required_email:
+        example: Required Email
+        type: string
+    type: object
+  auth.Respon422DLogin:
+    properties:
+      Incorrect_password:
+        example: Incorrect Password
+        type: string
+      No_record:
+        example: No Record Found
+        type: string
+      required_email:
+        example: Required Email
+        type: string
+      required_password:
+        example: Required Password
+        type: string
+    type: object
+  auth.Respon422DReset:
+    properties:
+      Empty_passwords:
+        example: Please ensure both field are entered, jawaban dari sistem
+        type: string
+      Invalid_token:
+        example: Invalid link. Try requesting again, jawaban dari sistem
+        type: string
+    type: object
+  auth.ResponseLogin:
+    properties:
+      avatar_path:
+        example: lokasi path avatar
+        type: string
+      email:
+        example: email dari account
+        type: string
+      id:
+        example: id yang tersimpan didalam sistem
+        type: string
+      token:
+        example: nilai balik token dari sistem
+        type: string
+      username:
+        example: username yang tersimpan disistem
+        type: string
+    type: object
+  auth.paramForget:
+    properties:
+      email:
+        default: ryanthe@gmail.com
+        example: ryanthe@gmail.com
+        type: string
+    required:
+    - email
+    type: object
+  auth.paramLogin:
+    properties:
+      email:
+        default: ryanthe@gmail.com
+        example: ryanthe@gmail.com
+        type: string
+      password:
+        example: paijo321
+        type: string
+    required:
+    - email
+    - password
+    type: object
+  auth.paramReset:
+    properties:
+      new_password:
+        example: PASSNEW
+        type: string
+      retype_password:
+        example: PASSNEW
+        type: string
+      token:
+        example: XXXXXXXXX
+        type: string
+    required:
+    - new_password
+    - retype_password
+    - token
+    type: object
+  auth.respon200Forget:
+    properties:
+      response:
+        example: jawaban dari sistem
+        type: string
+      status:
+        example: 422, kode nilai response dari sistem
+        type: string
+    type: object
+  auth.respon200Login:
+    properties:
+      response:
+        $ref: '#/definitions/auth.ResponseLogin'
+      status:
+        example: 200, kode nilai response dari sistem
+        type: string
+    type: object
+  auth.respon200Reset:
+    properties:
+      response:
+        example: Success, jawaban dari sistem
+        type: string
+      status:
+        example: 200, kode nilai response dari sistem
+        type: string
+    type: object
+  auth.respon422Forget:
+    properties:
+      error:
+        $ref: '#/definitions/auth.Respon422DForget'
+      status:
+        example: 422, kode nilai response dari sistem
+        type: string
+    type: object
+  auth.respon422Login:
+    properties:
+      error:
+        $ref: '#/definitions/auth.Respon422DLogin'
+      status:
+        example: 422, kode nilai response dari sistem
+        type: string
+    type: object
+  auth.respon422Reset:
+    properties:
+      error:
+        $ref: '#/definitions/auth.Respon422DReset'
+      status:
+        example: 422, kode nilai response dari sistem
+        type: string
+    type: object
+  user.Respon404DQuery:
+    properties:
+      No_user:
+        example: No User Found, jawaban dari sistem
+        type: string
+    type: object
+  user.Respon422DCreateUser:
+    properties:
+      Required_username:
+        example: Required Username
+        type: string
+      Taken_email:
+        example: Username Already Taken
+        type: string
+      Taken_username:
+        example: Username Already Taken
+        type: string
+      required_email:
+        example: Required Email
+        type: string
+      required_password:
+        example: Required Password
+        type: string
+    type: object
+  user.Respon422DUpdateUser:
+    properties:
+      Incorrect_password:
+        example: Incorrect Password
+        type: string
+      No_record:
+        example: No Record Found
+        type: string
+      required_email:
+        example: Required Email
+        type: string
+      required_password:
+        example: Required Password
+        type: string
+    type: object
+  user.Respon500DCreateUser:
+    properties:
+      Taken_email:
+        example: Username Already Taken
+        type: string
+      Taken_username:
+        example: Username Already Taken
+        type: string
+    type: object
+  user.ResponseCreateUser:
+    properties:
+      avatar_path:
+        example: lokasi path avatar
+        type: string
+      created_at:
+        example: tanggal dan jam data dibuat
+        type: string
+      email:
+        example: email dari account
+        type: string
+      id:
+        example: id yang tersimpan didalam sistem
+        type: string
+      token:
+        example: nilai balik token dari sistem
+        type: string
+      updated_at:
+        example: tanggal dan jam data diupdate
+        type: string
+      username:
+        example: username yang tersimpan
+        type: string
+    type: object
+  user.ResponseQuery:
+    properties:
+      avatar_path:
+        example: lokasi path avatar
+        type: string
+      created_at:
+        example: tanggal dan jam saat dibuat
+        type: string
+      email:
+        example: email dari account
+        type: string
+      id:
+        example: id yang tersimpan didalam sistem
+        type: string
+      token:
+        example: nilai balik token dari sistem
+        type: string
+      updated_at:
+        example: tanggal dan jam saat diupdate
+        type: string
+      username:
+        example: username yang tersimpan disistem
+        type: string
+    type: object
+  user.ResponseUpdateUser:
+    properties:
+      avatar_path:
+        example: lokasi path avatar
+        type: string
+      email:
+        example: email dari account
+        type: string
+      id:
+        example: id yang tersimpan didalam sistem
+        type: string
+      token:
+        example: nilai balik token dari sistem
+        type: string
+      username:
+        example: username yang tersimpan disistem
+        type: string
+    type: object
+  user.paramCreateUser:
+    properties:
+      email:
+        example: ryanthe@gmail.com
+        type: string
+      password:
+        example: paijo321
+        type: string
+      username:
+        example: ryanthe
+        type: string
+    required:
+    - email
+    - password
+    - username
+    type: object
+  user.paramUpdateUser:
+    properties:
+      email:
+        example: ryanthe@gmail.com
+        type: string
+      password:
+        example: paijo321
+        type: string
+      token:
+        type: string
+    required:
+    - email
+    - password
+    type: object
+  user.respon200Query:
+    properties:
+      response:
+        $ref: '#/definitions/user.ResponseQuery'
+      status:
+        example: 200, kode nilai response dari sistem
+        type: string
+    type: object
+  user.respon200UpdateUser:
+    properties:
+      response:
+        $ref: '#/definitions/user.ResponseUpdateUser'
+      status:
+        example: 200, kode nilai response dari sistem
+        type: string
+    type: object
+  user.respon201CreateUser:
+    properties:
+      response:
+        $ref: '#/definitions/user.ResponseCreateUser'
+      status:
+        example: 201, kode nilai response dari sistem
+        type: string
+    type: object
+  user.respon401UpdateUser:
+    properties:
+      error:
+        $ref: '#/definitions/user.Respon422DUpdateUser'
+      status:
+        example: 422, kode nilai response dari sistem
+        type: string
+    type: object
+  user.respon404Query:
+    properties:
+      error:
+        $ref: '#/definitions/user.Respon404DQuery'
+      status:
+        example: 404, kode nilai response dari sistem
+        type: string
+    type: object
+  user.respon422CreateUser:
+    properties:
+      error:
+        $ref: '#/definitions/user.Respon422DCreateUser'
+      status:
+        example: 422, kode nilai response dari sistem
+        type: string
+    type: object
+  user.respon422UpdateUser:
+    properties:
+      error:
+        $ref: '#/definitions/user.Respon422DUpdateUser'
+      status:
+        example: 422, kode nilai response dari sistem
+        type: string
+    type: object
+  user.respon500CreateUser:
+    properties:
+      error:
+        $ref: '#/definitions/user.Respon500DCreateUser'
+      status:
+        example: 500, kode nilai response dari sistem
+        type: string
+    type: object
+host: localhost:8888/api
+info:
+  contact: {}
+  description: Natrya Forum menggunakan bahasa pemrograman golang
+  title: Natrya Forum API
+  version: "1.0"
+paths:
+  /login:
+    post:
+      consumes:
+      - application/json
+      description: Login ke sistem, param wajib email dan password
+      parameters:
+      - description: payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/auth.paramLogin'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/auth.respon200Login'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/auth.respon422Login'
+      security:
+      - BearerAuth: []
+      summary: Login ke sistem
+      tags:
+      - Auth
+  /password/forgot:
+    post:
+      consumes:
+      - application/json
+      description: Lupa password, param wajib email
+      parameters:
+      - description: payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/auth.paramForget'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/auth.respon200Forget'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/auth.respon422Forget'
+      summary: Forget password
+      tags:
+      - Auth
+  /password/reset:
+    post:
+      consumes:
+      - application/json
+      description: Reset password, param wajib token, new_password,retype_password
+      parameters:
+      - description: payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/auth.paramReset'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/auth.respon200Reset'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/auth.respon422Reset'
+      summary: Reset password
+      tags:
+      - Auth
+  /users:
+    post:
+      consumes:
+      - application/json
+      description: Create pengguna sistem, param wajib username, email dan password
+      parameters:
+      - description: payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/user.paramCreateUser'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/user.respon201CreateUser'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/user.respon422CreateUser'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/user.respon500CreateUser'
+      summary: Create pengguna sistem
+      tags:
+      - User
+  /users/{some_id}:
+    get:
+      consumes:
+      - application/json
+      description: Query id user
+      parameters:
+      - description: ID User
+        in: path
+        name: some_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/user.respon200Query'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/user.respon404Query'
+      summary: Query id user
+      tags:
+      - User
+    put:
+      consumes:
+      - application/json
+      description: Update sistem, param wajib token ,email dan password
+      parameters:
+      - description: payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/user.paramUpdateUser'
+      - description: ID User
+        in: path
+        name: some_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/user.respon200UpdateUser'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/user.respon401UpdateUser'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/user.respon422UpdateUser'
+      security:
+      - BearerAuth: []
+      summary: Update user sistem
+      tags:
+      - User
+schemes:
+- http
+securityDefinitions:
+  BearerAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

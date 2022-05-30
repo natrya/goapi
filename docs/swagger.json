@@ -1,0 +1,786 @@
+{
+    "schemes": [
+        "http"
+    ],
+    "swagger": "2.0",
+    "info": {
+        "description": "Natrya Forum menggunakan bahasa pemrograman golang",
+        "title": "Natrya Forum API",
+        "contact": {},
+        "version": "1.0"
+    },
+    "host": "localhost:8888/api",
+    "basePath": "/v1",
+    "paths": {
+        "/login": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Login ke sistem, param wajib email dan password",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Login ke sistem",
+                "parameters": [
+                    {
+                        "description": "payload",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/auth.paramLogin"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/auth.respon200Login"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/auth.respon422Login"
+                        }
+                    }
+                }
+            }
+        },
+        "/password/forgot": {
+            "post": {
+                "description": "Lupa password, param wajib email",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Forget password",
+                "parameters": [
+                    {
+                        "description": "payload",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/auth.paramForget"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/auth.respon200Forget"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/auth.respon422Forget"
+                        }
+                    }
+                }
+            }
+        },
+        "/password/reset": {
+            "post": {
+                "description": "Reset password, param wajib token, new_password,retype_password",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Reset password",
+                "parameters": [
+                    {
+                        "description": "payload",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/auth.paramReset"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/auth.respon200Reset"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/auth.respon422Reset"
+                        }
+                    }
+                }
+            }
+        },
+        "/users": {
+            "post": {
+                "description": "Create pengguna sistem, param wajib username, email dan password",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "User"
+                ],
+                "summary": "Create pengguna sistem",
+                "parameters": [
+                    {
+                        "description": "payload",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/user.paramCreateUser"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/user.respon201CreateUser"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/user.respon422CreateUser"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/user.respon500CreateUser"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/{some_id}": {
+            "get": {
+                "description": "Query id user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "User"
+                ],
+                "summary": "Query id user",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID User",
+                        "name": "some_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/user.respon200Query"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/user.respon404Query"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Update sistem, param wajib token ,email dan password",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "User"
+                ],
+                "summary": "Update user sistem",
+                "parameters": [
+                    {
+                        "description": "payload",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/user.paramUpdateUser"
+                        }
+                    },
+                    {
+                        "type": "integer",
+                        "description": "ID User",
+                        "name": "some_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/user.respon200UpdateUser"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/user.respon401UpdateUser"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/user.respon422UpdateUser"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "auth.Respon422DForget": {
+            "type": "object",
+            "properties": {
+                "No_email": {
+                    "type": "string",
+                    "example": "Sorry, we do not recognize this email"
+                },
+                "Required_email": {
+                    "type": "string",
+                    "example": "Required Email"
+                }
+            }
+        },
+        "auth.Respon422DLogin": {
+            "type": "object",
+            "properties": {
+                "Incorrect_password": {
+                    "type": "string",
+                    "example": "Incorrect Password"
+                },
+                "No_record": {
+                    "type": "string",
+                    "example": "No Record Found"
+                },
+                "required_email": {
+                    "type": "string",
+                    "example": "Required Email"
+                },
+                "required_password": {
+                    "type": "string",
+                    "example": "Required Password"
+                }
+            }
+        },
+        "auth.Respon422DReset": {
+            "type": "object",
+            "properties": {
+                "Empty_passwords": {
+                    "type": "string",
+                    "example": "Please ensure both field are entered, jawaban dari sistem"
+                },
+                "Invalid_token": {
+                    "type": "string",
+                    "example": "Invalid link. Try requesting again, jawaban dari sistem"
+                }
+            }
+        },
+        "auth.ResponseLogin": {
+            "type": "object",
+            "properties": {
+                "avatar_path": {
+                    "type": "string",
+                    "example": "lokasi path avatar"
+                },
+                "email": {
+                    "type": "string",
+                    "example": "email dari account"
+                },
+                "id": {
+                    "type": "string",
+                    "example": "id yang tersimpan didalam sistem"
+                },
+                "token": {
+                    "type": "string",
+                    "example": "nilai balik token dari sistem"
+                },
+                "username": {
+                    "type": "string",
+                    "example": "username yang tersimpan disistem"
+                }
+            }
+        },
+        "auth.paramForget": {
+            "type": "object",
+            "required": [
+                "email"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "default": "ryanthe@gmail.com",
+                    "example": "ryanthe@gmail.com"
+                }
+            }
+        },
+        "auth.paramLogin": {
+            "type": "object",
+            "required": [
+                "email",
+                "password"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "default": "ryanthe@gmail.com",
+                    "example": "ryanthe@gmail.com"
+                },
+                "password": {
+                    "type": "string",
+                    "example": "paijo321"
+                }
+            }
+        },
+        "auth.paramReset": {
+            "type": "object",
+            "required": [
+                "new_password",
+                "retype_password",
+                "token"
+            ],
+            "properties": {
+                "new_password": {
+                    "type": "string",
+                    "example": "PASSNEW"
+                },
+                "retype_password": {
+                    "type": "string",
+                    "example": "PASSNEW"
+                },
+                "token": {
+                    "type": "string",
+                    "example": "XXXXXXXXX"
+                }
+            }
+        },
+        "auth.respon200Forget": {
+            "type": "object",
+            "properties": {
+                "response": {
+                    "type": "string",
+                    "example": "jawaban dari sistem"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "422, kode nilai response dari sistem"
+                }
+            }
+        },
+        "auth.respon200Login": {
+            "type": "object",
+            "properties": {
+                "response": {
+                    "$ref": "#/definitions/auth.ResponseLogin"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "200, kode nilai response dari sistem"
+                }
+            }
+        },
+        "auth.respon200Reset": {
+            "type": "object",
+            "properties": {
+                "response": {
+                    "type": "string",
+                    "example": "Success, jawaban dari sistem"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "200, kode nilai response dari sistem"
+                }
+            }
+        },
+        "auth.respon422Forget": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "$ref": "#/definitions/auth.Respon422DForget"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "422, kode nilai response dari sistem"
+                }
+            }
+        },
+        "auth.respon422Login": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "$ref": "#/definitions/auth.Respon422DLogin"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "422, kode nilai response dari sistem"
+                }
+            }
+        },
+        "auth.respon422Reset": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "$ref": "#/definitions/auth.Respon422DReset"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "422, kode nilai response dari sistem"
+                }
+            }
+        },
+        "user.Respon404DQuery": {
+            "type": "object",
+            "properties": {
+                "No_user": {
+                    "type": "string",
+                    "example": "No User Found, jawaban dari sistem"
+                }
+            }
+        },
+        "user.Respon422DCreateUser": {
+            "type": "object",
+            "properties": {
+                "Required_username": {
+                    "type": "string",
+                    "example": "Required Username"
+                },
+                "Taken_email": {
+                    "type": "string",
+                    "example": "Username Already Taken"
+                },
+                "Taken_username": {
+                    "type": "string",
+                    "example": "Username Already Taken"
+                },
+                "required_email": {
+                    "type": "string",
+                    "example": "Required Email"
+                },
+                "required_password": {
+                    "type": "string",
+                    "example": "Required Password"
+                }
+            }
+        },
+        "user.Respon422DUpdateUser": {
+            "type": "object",
+            "properties": {
+                "Incorrect_password": {
+                    "type": "string",
+                    "example": "Incorrect Password"
+                },
+                "No_record": {
+                    "type": "string",
+                    "example": "No Record Found"
+                },
+                "required_email": {
+                    "type": "string",
+                    "example": "Required Email"
+                },
+                "required_password": {
+                    "type": "string",
+                    "example": "Required Password"
+                }
+            }
+        },
+        "user.Respon500DCreateUser": {
+            "type": "object",
+            "properties": {
+                "Taken_email": {
+                    "type": "string",
+                    "example": "Username Already Taken"
+                },
+                "Taken_username": {
+                    "type": "string",
+                    "example": "Username Already Taken"
+                }
+            }
+        },
+        "user.ResponseCreateUser": {
+            "type": "object",
+            "properties": {
+                "avatar_path": {
+                    "type": "string",
+                    "example": "lokasi path avatar"
+                },
+                "created_at": {
+                    "type": "string",
+                    "example": "tanggal dan jam data dibuat"
+                },
+                "email": {
+                    "type": "string",
+                    "example": "email dari account"
+                },
+                "id": {
+                    "type": "string",
+                    "example": "id yang tersimpan didalam sistem"
+                },
+                "token": {
+                    "type": "string",
+                    "example": "nilai balik token dari sistem"
+                },
+                "updated_at": {
+                    "type": "string",
+                    "example": "tanggal dan jam data diupdate"
+                },
+                "username": {
+                    "type": "string",
+                    "example": "username yang tersimpan"
+                }
+            }
+        },
+        "user.ResponseQuery": {
+            "type": "object",
+            "properties": {
+                "avatar_path": {
+                    "type": "string",
+                    "example": "lokasi path avatar"
+                },
+                "created_at": {
+                    "type": "string",
+                    "example": "tanggal dan jam saat dibuat"
+                },
+                "email": {
+                    "type": "string",
+                    "example": "email dari account"
+                },
+                "id": {
+                    "type": "string",
+                    "example": "id yang tersimpan didalam sistem"
+                },
+                "token": {
+                    "type": "string",
+                    "example": "nilai balik token dari sistem"
+                },
+                "updated_at": {
+                    "type": "string",
+                    "example": "tanggal dan jam saat diupdate"
+                },
+                "username": {
+                    "type": "string",
+                    "example": "username yang tersimpan disistem"
+                }
+            }
+        },
+        "user.ResponseUpdateUser": {
+            "type": "object",
+            "properties": {
+                "avatar_path": {
+                    "type": "string",
+                    "example": "lokasi path avatar"
+                },
+                "email": {
+                    "type": "string",
+                    "example": "email dari account"
+                },
+                "id": {
+                    "type": "string",
+                    "example": "id yang tersimpan didalam sistem"
+                },
+                "token": {
+                    "type": "string",
+                    "example": "nilai balik token dari sistem"
+                },
+                "username": {
+                    "type": "string",
+                    "example": "username yang tersimpan disistem"
+                }
+            }
+        },
+        "user.paramCreateUser": {
+            "type": "object",
+            "required": [
+                "email",
+                "password",
+                "username"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "example": "ryanthe@gmail.com"
+                },
+                "password": {
+                    "type": "string",
+                    "example": "paijo321"
+                },
+                "username": {
+                    "type": "string",
+                    "example": "ryanthe"
+                }
+            }
+        },
+        "user.paramUpdateUser": {
+            "type": "object",
+            "required": [
+                "email",
+                "password"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "example": "ryanthe@gmail.com"
+                },
+                "password": {
+                    "type": "string",
+                    "example": "paijo321"
+                },
+                "token": {
+                    "type": "string"
+                }
+            }
+        },
+        "user.respon200Query": {
+            "type": "object",
+            "properties": {
+                "response": {
+                    "$ref": "#/definitions/user.ResponseQuery"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "200, kode nilai response dari sistem"
+                }
+            }
+        },
+        "user.respon200UpdateUser": {
+            "type": "object",
+            "properties": {
+                "response": {
+                    "$ref": "#/definitions/user.ResponseUpdateUser"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "200, kode nilai response dari sistem"
+                }
+            }
+        },
+        "user.respon201CreateUser": {
+            "type": "object",
+            "properties": {
+                "response": {
+                    "$ref": "#/definitions/user.ResponseCreateUser"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "201, kode nilai response dari sistem"
+                }
+            }
+        },
+        "user.respon401UpdateUser": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "$ref": "#/definitions/user.Respon422DUpdateUser"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "422, kode nilai response dari sistem"
+                }
+            }
+        },
+        "user.respon404Query": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "$ref": "#/definitions/user.Respon404DQuery"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "404, kode nilai response dari sistem"
+                }
+            }
+        },
+        "user.respon422CreateUser": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "$ref": "#/definitions/user.Respon422DCreateUser"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "422, kode nilai response dari sistem"
+                }
+            }
+        },
+        "user.respon422UpdateUser": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "$ref": "#/definitions/user.Respon422DUpdateUser"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "422, kode nilai response dari sistem"
+                }
+            }
+        },
+        "user.respon500CreateUser": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "$ref": "#/definitions/user.Respon500DCreateUser"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "500, kode nilai response dari sistem"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "BearerAuth": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    }
+}
